@@ -1,7 +1,7 @@
 .gameboard {
   margin: auto;
   padding: 4px;
-  max-width: 100%;
+  max-width: 80%;
 }
 .rowWrapper {
     display: flex;
