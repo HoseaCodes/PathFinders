@@ -1,0 +1,14 @@
+.node {
+    width: 80px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+.node-start {
+background-image: url('../../Images/start.png');
+
+}
+
+.node-end {
+    background-image: url('../../Images/end.png');
+}

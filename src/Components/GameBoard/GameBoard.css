@@ -1,0 +1,8 @@
+.gameboard {
+  margin: auto;
+  padding: 4px;
+  max-width: 100%;
+}
+.rowWrapper {
+    display: flex;
+}
