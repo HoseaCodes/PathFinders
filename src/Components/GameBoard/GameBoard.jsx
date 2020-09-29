@@ -41,7 +41,7 @@ const GameBoard = () => {
         this.x = i;
         this.y = j;
         this.isStart = this.x === NODE_START_ROW && this.y === NODE_START_COL;
-        this.isEND = this.x === NODE_START_ROW && this.y === NODE_START_COL;
+        this.isEND = this.x === NODE_END_ROW && this.y === NODE_END_COL;
         this.g = 0;
         this.f = 0;
         this.h = 0;
