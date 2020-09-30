@@ -1,0 +1,10 @@
+.tile-grid {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.tile-wrap {
+    display: flex;
+    margin: 0 auto;
+}

@@ -1,0 +1,15 @@
+.node {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+}
+
+.node-start {
+    /* background-image: url('../../Images/start.png'); */
+    background-color: green;
+}
+
+.node-end {
+    /* background-image: url('../../Images/end.png'); */
+    background-color: red;
+}
