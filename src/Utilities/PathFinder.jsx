@@ -5,6 +5,9 @@ function PathFinder(startNode, endNode) {
     let closedSet = [];
     // Contains the best path from startNode to endNode
     let path = [];
+    // Contains each visited node
+    let visitedNodes = [];
+
 
     openSet.push(startNode);
     // Loop through all elements in the openSet
@@ -19,7 +22,7 @@ function PathFinder(startNode, endNode) {
 
         // Define variable to hold node with lowest f-value in openSet
         let current = openSet[leastIdx];
-
+        visitedNodes.push(current);
         // Once the endNode is found then construct the path's array of nodes by moving backwards
         if (current === endNode) {
             let temp = current;
@@ -29,7 +32,7 @@ function PathFinder(startNode, endNode) {
                 temp = temp.previous;
             }
 
-            return path;
+            return { path, visitedNodes };
         }
 
         // Remove the current element from the openSet and place it in the closedSet
@@ -50,7 +53,7 @@ function PathFinder(startNode, endNode) {
                         neighbor.g = tempG;
                         newPath = true;
                     }
-                // Otherwise add the neighbor to the openSet
+                    // Otherwise add the neighbor to the openSet
                 } else {
                     neighbor.g = tempG;
                     newPath = true;
@@ -66,7 +69,7 @@ function PathFinder(startNode, endNode) {
         }
     }
 
-    return {path, error: "No path found!"}
+    return { path, visitedNodes, error: "No path found!" }
 }
 
 function heuristic(a, b) {

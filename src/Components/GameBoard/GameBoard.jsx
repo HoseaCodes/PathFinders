@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+import './GameBoard.css';
 import Node from '../Node/Node';
 import TileManager from '../TileManager/TileManager';
-import './GameBoard.css';
+import PathFinder from '../../Utilities/PathFinder'
 
 
 // These variables hold the dimensions of grid for when it's constructed
@@ -19,6 +20,7 @@ const GameBoard = () => {
     // Create grid constants and give a default empty value
     const [Grid, setGrid] = useState([]);
     const [Path, setPath] = useState([]);
+    const [VisitedNodes, setVisitedNodes] = useState([]);
 
     // Initialize the grid before anything is rendered on the DOM
     useEffect(() => {
@@ -43,7 +45,8 @@ const GameBoard = () => {
         const startNode = grid[nodeStartRow][nodeStartCol];
         const endNode = grid[nodeEndRow][nodeEndCol];
         let path = PathFinder(startNode, endNode);
-        setPath(path);
+        setPath(path.path);
+        setVisitedNodes(path.visitedNodes)
     };
 
     // Iterate through all (x,y) positions and create a "spot" at each (x,y) location
@@ -79,15 +82,15 @@ const GameBoard = () => {
         // add attributes that define neighboring spots and previous spot for pathfinder
         this.neighbors = [];
         this.previous = undefined;
-        this.addNeighbors = function(grid) {
+        this.addNeighbors = function (grid) {
             let i = this.x;
             let j = this.y;
             // add columns to the left and right as neighbors w/o exceeding boundaries of grid
-            if (i > 0) this.neighbors.push(grid[i-1][j]);
-            if (i < rows - 1) this.neighbors.push(grid[i+1][j]);
+            if (i > 0) this.neighbors.push(grid[i - 1][j]);
+            if (i < rows - 1) this.neighbors.push(grid[i + 1][j]);
             // add columns above and below as neighbors w/o exceeding boundaries of grid
-            if (j > 0) this.neighbors.push(grid[i][j-1]);
-            if (j < cols - 1) this.neighbors.push(grid[i][j+1])
+            if (j > 0) this.neighbors.push(grid[i][j - 1]);
+            if (j < cols - 1) this.neighbors.push(grid[i][j + 1])
         }
     }
 
@@ -116,13 +119,37 @@ const GameBoard = () => {
         </div>
     );
 
+    const visualizeShortestPath = (shortestPathNodes) => {
+        for (let i = 0; i < shortestPathNodes.length; i++) {
+            setTimeout(() => {
+                const node = shortestPathNodes[i];
+                document.getElementById(`node-${node.x}-${node.y}`).className = 'node node-shortest-path';
+            }, 10 * i);
+        }
+    };
+    const visualizePath = () => {
+        for (let i = 0; i < VisitedNodes.length; i++) {
+            if (i === VisitedNodes.length) {
+                setTimeout(() => {
+                    visualizeShortestPath(Path)
+                }, 20 * i);
+            } else {
+                setTimeout(() => {
+                    const node = VisitedNodes[i];
+                    document.getElementById(`node-${node.x}-${node.y}`).className = 'node node-visited';
+                }, 20 * i);
+            }
+        }
+    };
     console.log(Path);
 
     return (
         <div className='gameboard'>
+            <button onClick={visualizePath}>Visualize Path</button>
             <h1>
                 GameBoard
             </h1>
+            {/* {gridWithNode} */}
             <TileManager />
         </div>
     );
