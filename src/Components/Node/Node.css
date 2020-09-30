@@ -4,12 +4,12 @@
     border: 1px solid black;
 }
 
-.node-start {
+.nodeStart {
     /* background-image: url('../../Images/start.png'); */
     background-color: green;
 }
 
-.node-end {
+.nodeEnd {
     /* background-image: url('../../Images/end.png'); */
     background-color: red;
 }
