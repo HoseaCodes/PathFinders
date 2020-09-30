@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import Node from '../Node/Node';
+import TileManager from '../TileManager/TileManager';
 import './GameBoard.css';
+
 
 // These variables hold the dimensions of grid for when it's constructed
 const cols = 25;
@@ -69,12 +71,12 @@ const GameBoard = () => {
                             const { isStart, isEnd } = col;
 
                             return (
-                                <Node 
-                                    key={colIndex} 
-                                    isStart={isStart} 
-                                    isEnd={isEnd} 
-                                    row={rowIndex} 
-                                    col={colIndex} 
+                                <Node
+                                    key={colIndex}
+                                    isStart={isStart}
+                                    isEnd={isEnd}
+                                    row={rowIndex}
+                                    col={colIndex}
                                 />
                             );
                         })}
@@ -89,7 +91,7 @@ const GameBoard = () => {
             <h1>
                 GameBoard
             </h1>
-            {gridwithNode}
+            <TileManager />
         </div>
     );
 }
