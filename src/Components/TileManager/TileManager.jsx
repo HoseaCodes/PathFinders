@@ -6,13 +6,14 @@ import './TileManager.css'
 const TileManager = () => {
     const [tileList, setTileList] = useState([[]]);
     const [hasLoaded, setLoad] = useState(false);
+
     useEffect(() => {
-        const grid = new Array(20);
+        const grid = new Array(13);
         let k = 0;
-        for (let i = 0; i < 20; i++) {
-            grid[i] = new Array(20);
-            for (let j = 0; j < 20; j++) {
-                grid[i][j] = k;
+        for (let col = 0; col < 13; col++) {
+            grid[col] = new Array(28);
+            for (let row = 0; row < 28; row++) {
+                grid[col][row] = k;
                 k++;
             }
         }
@@ -32,7 +33,6 @@ const TileManager = () => {
         <div>
             {hasLoaded ?
                 (<div>
-                    <div>Loaded</div>
                     <div className='tile-grid'>
                         {tileList.map((el, i) => (
                             <div className='tile-wrap'>
